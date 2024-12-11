@@ -3,16 +3,21 @@ const app = express();
 
 import { connect } from "mongoose";
 
-import 'dotenv/config'
+import "dotenv/config";
 
-main().catch(err => console.log(err));
+main().catch((err) => console.log(err));
 async function main() {
   await connect(`mongodb://127.0.0.1:27017/${process.env.DB_Name}`);
-  console.log("db connected")
+  console.log("db connected");
 }
 
-import UserName from './models/auth';
-const mamad = new UserName({ username : 'mamad' ,email : '123465mamad' , password : '12345' , phone : 123456})
+import UserName from "./models/user";
+const mamad = new UserName({
+  username: "mamad",
+  email: "123465mamad@Gmail.com",
+  password: "12345678",
+  phone: "09154224552",
+});
 await mamad.save();
 
 const users = await UserName.find();

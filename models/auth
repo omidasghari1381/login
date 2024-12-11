@@ -1,16 +1,14 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-// main().catch(err => console.log(err));
-// async function main() {
-//   await mongoose.connect('mongodb://127.0.0.1:27017/test');
-//   console.log("db connected")
-// }
 
-const userNameSchema = new mongoose.Schema({
+const userNameSchema = new Schema({
+    username : String ,
     email: String ,
     password: String ,
     phone: Number ,
     
 });
 
-const userName = mongoose.model('userName', userNameSchema);
+const UserName = model('userName', userNameSchema);
+
+export default UserName

@@ -1,12 +1,9 @@
+//db
 import { Schema, model } from "mongoose";
 
-const validateEmail = (email) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-    );
-};
+//validateEmail
+import validateEmail from "../middleware/validateEmail.js";
+
 const userSchema = new Schema({
   username: {
     type: String,

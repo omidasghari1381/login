@@ -24,7 +24,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     minlength: 8,
-    maxlenth: 20,
+    maxlenth: 60,
     require: true,
   },
   phone: {
@@ -36,6 +36,6 @@ const userSchema = new Schema({
   },
 });
 
-const UserName = model("userName", userSchema);
+const User = model("userName", userSchema);
 
-export default UserName;
+export default User;

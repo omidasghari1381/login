@@ -5,6 +5,9 @@ const router = express.Router();
 //db
 import user from "../models/user.js";
 
+//login
+import checkUser from '../controllers/login.js' 
+
 import hashPassword from "../middleware/hashps.js";
 
 router.post("/register", async (req, res) => {
@@ -14,5 +17,8 @@ router.post("/register", async (req, res) => {
   console.log("user saved");
   res.send(newUser);
 });
+
+router.post("/login" , checkUser)
+
 
 export default router;

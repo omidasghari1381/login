@@ -10,6 +10,7 @@ const userSchema = new Schema({
     minlength: 3,
     maxlenth: 20,
     require: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -17,6 +18,7 @@ const userSchema = new Schema({
     maxlenth: 320,
     require: true,
     validate: [validateEmail, "please enter your email properly"],
+    unique: true,
   },
   password: {
     type: String,
@@ -30,6 +32,7 @@ const userSchema = new Schema({
     maxlenth: 13,
     require: true,
     validate: /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/,
+    unique: true,
   },
 });
 

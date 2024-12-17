@@ -23,4 +23,4 @@ app.listen(process.env.SERVER_PORT, () => {
 //userrouter
 import router from "./routes/user.js";
 
-app.use('/user', router);
+app.use("/user", router);

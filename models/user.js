@@ -1,6 +1,5 @@
 //db
 import { Schema, model } from "mongoose";
-
 //validateEmail
 import validateEmail from "../middleware/validateEmail.js";
 
@@ -34,6 +33,13 @@ const userSchema = new Schema({
     validate: /09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}/,
     unique: true,
   },
+  token:{
+    type: String,
+  },
+  exToken:{
+    type:Date,
+    require:true,
+  }
 });
 
 const User = model("userName", userSchema);

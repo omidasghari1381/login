@@ -1,8 +1,11 @@
 //usermodel
 import user from "../models/user.js";
-
 //bcrypt
 import bcrypt from "bcrypt";
+//jwt
+import jwt from "jsonwebtoken"
+//.env
+import "dotenv/config";
 
 async function lookFor(userId, password) {
   try {
@@ -16,26 +19,30 @@ async function lookFor(userId, password) {
 
     const isPasswordCorrect = await bcrypt.compare(password, User.password);
     if (!isPasswordCorrect) {
-      console.log("password in incorrect");
+       console.log("password in incorrect");
       return { success: false, message: "password in incorrect" };
     }
+    const token = jwt.sign({ id: User._id }, process.env.PASSWORD_HASH_KEY, { expiresIn: "1h" });
     console.log("login succesfully");
-    return { success: true, message: "login succesfully", User };
+    return { success: true, message: "login succesfully", token };
   } catch (error) {
     console.error(error);
     return { success: false, message: "login failed" };
   }
 }
 
-function checkUser(req, res) {
-  const userId = req.body.userId;
-  const password = req.body.password;
+async function checkUser(req, res) {
+  const {userId , password} = req.body;
   if (!userId || !password) {
     res
       .status(400)
       .json({ succes: false, message: "information is incomplete" });
+  }   
+  const result = await lookFor(userId, password);
+  if (result.success) {
+    res.status(200).json(result);
   } else {
-    res.send(lookFor(userId, password));
+    res.status(401).json(result);
   }
 }
 
